@@ -67,8 +67,6 @@ Instead of the above, you can also use the `scripts/provision.sh` script provide
   ./provision.sh delete --project-suffix [suffix]
   ```
 
-__Note:__ you need ~8GB memory for running this demo.
-
 # Guide
 
 1. A Jenkins pipeline is pre-configured which clones Tasks application source code from Gogs (running on OpenShift), builds, deploys and promotes the result through the deployment pipeline. In the CI/CD project, click on _Builds_ and then _Pipelines_ to see the list of defined pipelines.
@@ -85,10 +83,11 @@ __Note:__ you need ~8GB memory for running this demo.
 
 5. After pipeline completion, demonstrate the following:
   * Explore the _snapshots_ repository in Nexus and verify _openshift-tasks_ is pushed to the repository
-  * Explore SonarQube and verify a project is created with metrics, stats, code coverage, etc
+  * Explore pipeline in Jenkins and show the metrics, stats, code coverage, etc
   * Explore _Tasks - Dev_ project in OpenShift console and verify the application is deployed in the DEV environment
   * Explore _Tasks - Stage_ project in OpenShift console and verify the application is deployed in the STAGE environment  
 
+![](images/jenkins-analysis.png?raw=true)
 
 6. Clone and checkout the _eap-7_ branch of the _openshift-tasks_ git repository and using an IDE (e.g. JBoss Developer Studio), remove the ```@Ignore``` annotation from ```src/test/java/org/jboss/as/quickstarts/tasksrs/service/UserResourceTest.java``` test methods to enable the unit tests. Commit and push to the git repo.
 
