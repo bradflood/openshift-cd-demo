@@ -2,7 +2,7 @@
 
 # CI/CD Demo - OpenShift Container Platform 3.6
 
-This repository includes the infrastructure and pipeline definition for continuous delivery using Jenkins, Nexus and SonarQube on OpenShift. On every pipeline execution, the code goes through the following steps:
+This repository includes the infrastructure and pipeline definition for continuous delivery using Jenkins and Nexus on OpenShift. On every pipeline execution, the code goes through the following steps:
 
 1. Code is cloned from Gogs, built, tested and analyzed for bugs and bad patterns
 2. The WAR artifact is pushed to Nexus Repository manager
@@ -53,10 +53,11 @@ your own names and use the following to create the demo:
       | oc create -f - -n cicd-project-name
   ```
 
-To make sure Jenkins runs smoothly, allow Jenkins to use up to 1Gi memory:
+Adjust Jenkins resources and plugins used for this demo:
 
   ```
   oc set resources dc/jenkins --limits=memory=1Gi --requests=memory=512Mi -n cicd
+  oc set env dc/jenkins INSTALL_PLUGINS=analysis-core:1.92,findbugs:4.71,pmd:3.49,checkstyle:3.49,dependency-check-jenkins-plugin:2.1.1,htmlpublisher:1.14,jacoco:2.2.1,analysis-collector:1.52 -n cicd
   ``` 
 
 Instead of the above, you can also use the `scripts/provision.sh` script provided which does the exact steps as described above:
