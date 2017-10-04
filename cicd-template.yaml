@@ -86,7 +86,7 @@ objects:
                step([$class: 'JUnitResultArchiver', testResults: '**/target/surefire-reports/TEST-*.xml'])
              }
             
-             stage ('Analysis') {
+             stage ('Analysis (Security, Bugs, etc)') {
                sh "${mvnCmd} site -DskipTests=true"
               
                step([$class: 'CheckStylePublisher', unstableTotalAll:'20'])
